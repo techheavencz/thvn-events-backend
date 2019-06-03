@@ -17,7 +17,7 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/voborilovab/TechHeavenEvents/issues"
-
+  },
   "engines": {
     "node": ">=10.0.0"
   },

@@ -1,13 +1,13 @@
 const fetch = require('node-fetch');
 
 const FB_GRAPH_API_URL = `https://graph.facebook.com`;
-const FB_GRAPH_API_PAGE_TOKEN = `EAAJTkK7oiPABAELVMMHZAxJMzmV13hKDprxAX9EwOe8MALoJPRWgUQNmJ9fYZAqwZCcm1XJ7izItXtoPaoqgu4d1JfZBZBUfJLPG5VnIlPZA7KrzRcCf28St8F0xLDTAZBuPg5ldZCFr2M8OfVvClefCJlDZBdHie4xZC69NZByzs2wDNxUXq0coszpv5QFPGayjYEZD`;
-const FB_GRAPH_API_EVENTS_QUERY = `events%7Bid%2Cname%2Cdescription%2Cstart_time%2Ccover%2Cticket_uri%2Cplace%7D`;
+const FB_GRAPH_API_PAGE_TOKEN = `EAAJTkK7oiPABALGW0HCoxDDUgjK522WhZA8SG5L2ODaMHgW9YRjOzAMsjpuG2iuQVE8XkkqAVx2L2qUA1Qp6j2Uz1AUR0ZCw9O3dXsVyNePJphUJz5zxAUf6dISK8x2tYw6kyaucdvrDwrwvlUSHNhBYVG6NTGFFQpEEW928eBkWXOF4vdBK8AtJMCqiUZD`;
+const FB_GRAPH_API_EVENTS_QUERY = `events{id,name,description,start_time,cover,ticket_uri,place}`;
 const FB_URL = `https://www.facebook.com`;
 
 module.exports = async function getFbEvents(eventId){
 
-    const url  = `${FB_GRAPH_API_URL}/v3.3/${eventId}?fields=${FB_GRAPH_API_EVENTS_QUERY}&access_token=${FB_GRAPH_API_PAGE_TOKEN}`;
+    const url  = `${FB_GRAPH_API_URL}/v3.3/TechHeavenCZ?fields=${FB_GRAPH_API_EVENTS_QUERY}&access_token=${FB_GRAPH_API_PAGE_TOKEN}`;
     const response = await fetch(url);
     const data = await response.json();
 
@@ -20,7 +20,7 @@ module.exports = async function getFbEvents(eventId){
         cover_url: eventFb.cover.source,
         event_url:`${FB_URL}/${eventFb.id}`,
         date:  eventFb.start_time,
-        place: eventFb.place.street
+        place: eventFb.place.name
 
 
     }))
