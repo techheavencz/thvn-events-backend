@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm run server-watch",
+    "start": "npm run server",
     "test": "node src/test.js",
     "server": "node src/server.js",
     "server-watch": "onchange -i -k 'src/*.js' -- npm run server"
