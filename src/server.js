@@ -14,5 +14,4 @@ app.get('/events/:id?', async (req, res) => {
     res.json({status: 'ok', data: await getFbEvents(req.params.id)});
 });
 
-
-app.listen(port, () => console.log(`Server listening on port ${port}!`));
+app.listen(port, () => console.log(`Server listening on http://localhost:${port}/`));
