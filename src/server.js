@@ -14,9 +14,5 @@ app.get('/events/:id?', async (req, res) => {
     res.json({status: 'ok', data: await getFbEvents(req.params.id)});
 });
 
-// Send API 404
-app.use(function (req, res) {
-    res.status(400).json({status: 'error', message: 'Endpoint not found.'});
-});
 
 app.listen(port, () => console.log(`Server listening on port ${port}!`));
