@@ -5,6 +5,7 @@ const cors = require('cors');
 const port = process.env.PORT || 8080;
 
 app.use(cors());
+app.set('trust proxy', true);
 
 app.get('/events/:id?', async (req, res) => {
     if (!req.params.id) {
