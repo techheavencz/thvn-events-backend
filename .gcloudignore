@@ -12,6 +12,8 @@
 # below:
 .git
 .gitignore
+.idea
 
 # Node.js dependencies:
 node_modules/
+*~
