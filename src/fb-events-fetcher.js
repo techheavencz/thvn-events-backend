@@ -12,17 +12,19 @@ let cache = {};
 module.exports.getFbEvents = async function (eventId) {
     // Check cache if exists event & is not yet expired => return cached
     if (cache[eventId] && cache[eventId].expire > new Date()) {
+        console.debug("Fetched from cache");
         return cache[eventId].data;
     }
 
     // Fetch data from API
     const fbData = await fetchEvents(eventId);
+    console.debug("Fetched from FB API");
 
     // Put fetched data to cache
     const expireTime = new Date(new Date().getTime() + CACHE_TTL * 1000);
     cache[eventId] = {
-        data: fbData,
         expire: expireTime,
+        data: fbData,
     };
 
     return fbData;
