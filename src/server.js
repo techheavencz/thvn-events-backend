@@ -11,14 +11,17 @@ app.set('trust proxy', true);
 app.get('/events/:id?', async (req, res) => {
     // Handle missing pageId in URL
     if (!req.params.id) {
+        console.info(`Error 400, invalid request`);
         return res.status(400).json({status: 'error', message: 'You should provide Facebook page id. Use: /event/{pageid}'});
     }
     
     try {
         const data = await fbEventsFetcher.getFbEvents(req.params.id);
+        console.info(`OK, results ${data.length} events`);
         res.set('Cache-Control', 'public, max-age=3600');
         res.json({status: 'ok', data: data});
     }catch (e) {
+        console.info(`Error 404, page not found ('${req.params.id}')`);
         res.status(404).json({status: 'error', message: `This page does not exists (${e.message})`});
     }
 });
