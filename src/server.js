@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const port = process.env.PORT || 8080;
+const serverless = require("serverless-http")
 
 app.use(cors());
 app.set('trust proxy', true);
@@ -21,7 +22,7 @@ app.get('/events/:id?', async (req, res) => {
         res.set('Cache-Control', 'public, max-age=3600');
         res.json({status: 'ok', data: data});
     }catch (e) {
-        console.info(`Error 404, page not found ('${req.params.id}')`);
+        console.info(`Error 404, page not found ('${req.params.id}') ${JSON.stringify(e)}`);
         res.status(404).json({status: 'error', message: `This page does not exists (${e.message})`});
     }
 });
@@ -34,3 +35,5 @@ app.get('/__cache/', async (req, res) => {
 
 //Start server
 app.listen(port, () => console.log(`Server listening on http://localhost:${port}/`));
+
+module.exports.handler = serverless(app)
